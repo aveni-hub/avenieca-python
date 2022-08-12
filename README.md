@@ -1,9 +1,7 @@
 # avenieca-python
 Python SDK for AveniECA
 
-## Installation
-Install convoy-python with
-
+## run
 ```bash
 python consumer.py localhost:9092 testtopic
 ```
