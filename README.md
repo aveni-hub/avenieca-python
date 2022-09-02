@@ -1,4 +1,4 @@
-# avenieca-python
+# avenieca-python (WIP!)
 Python SDK for AveniECA
 
 ## run
