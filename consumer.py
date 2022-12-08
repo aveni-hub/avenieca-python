@@ -8,6 +8,6 @@ if __name__ == '__main__':
     print("listening...")
     for msg in consumer:
         b_val = msg.value
-        data = json.loads(b_val)["data"]
+        data = json.loads(b_val)
         myArray = numpy.array(data)
-        print(myArray.shape) # float64
+        print(myArray) # float64
