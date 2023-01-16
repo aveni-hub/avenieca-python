@@ -1,4 +1,4 @@
-# avenieca-python (WIP!)
+# avenieca-python
 Python SDK for publishing state signals to the AveniECA suite.
 
 ## Usage
