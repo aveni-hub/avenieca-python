@@ -23,7 +23,7 @@ class Consumer:
         """
         :param func: handler to process received messages
         :param sync_once: run consume loop once
-        :return: none
+        :return: None
         """
         for msg in self.client:
             byte_val = msg.value
