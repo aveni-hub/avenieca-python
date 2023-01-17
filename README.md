@@ -1,6 +1,10 @@
 # avenieca-python
 Python SDK for publishing state signals to the AveniECA suite.
 
+```bash
+pip install avenieca-python
+```
+
 ## Usage
 
 ### Stream continuously to a topic
