@@ -26,7 +26,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    packages=["avenieca", "avenieca/producers"],
+    packages=["avenieca", "avenieca/producers", "avenieca/utils"],
     include_package_data=True,
     install_requires=["kafka-python", "numpy"],
 )
