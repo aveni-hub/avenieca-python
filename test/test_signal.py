@@ -42,23 +42,26 @@ def test_verify_signal():
     signal = {
         "valence": None,
         "score": None,
-        "state": "[9.1, 2.1, 0.3]"
+        "state": "[9.1, 2.1, 0.3]",
+        "embedding_input": None,
     }
     verify_signal(signal)
-    assert signal["state"] == "[9.1, 2.1, 0.3]"
+    assert signal["state"] == [9.1, 2.1, 0.3]
 
     signal = {
         "valence": None,
         "score": None,
-        "state": np.array([9.1, 2.1, 0.3])
+        "state": np.array([9.1, 2.1, 0.3]),
+        "embedding_input": None,
     }
     verify_signal(signal)
-    assert signal["state"] == "[9.1, 2.1, 0.3]"
+    assert signal["state"] == [9.1, 2.1, 0.3]
 
     signal = {
         "valence": None,
         "score": None,
-        "state": [9.1, 2.1, 0.3]
+        "state": [9.1, 2.1, 0.3],
+        "embedding_input": None,
     }
     verify_signal(signal)
-    assert signal["state"] == "[9.1, 2.1, 0.3]"
+    assert signal["state"] == [9.1, 2.1, 0.3]

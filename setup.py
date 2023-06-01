@@ -10,10 +10,10 @@ HERE = pathlib.Path(__file__).resolve().parent
 # The text of the README file is used as a description
 README = (HERE / "README.md").read_text()
 
-# This call to setup() does all the work
+# This call to set up() does all the work
 setup(
     name="avenieca-python",
-    version="0.1.2",
+    version="0.1.3",
     description="Python SDK for AveniECA",
     url="https://github.com/aveni-hub/avenieca-python",
     long_description=README,
@@ -26,7 +26,13 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    packages=["avenieca", "avenieca/producers", "avenieca/utils"],
+    packages=[
+        "avenieca",
+        "avenieca/producers",
+        "avenieca/utils",
+        "avenieca/api",
+        "avenieca/api/utils",
+        "avenieca/config"],
     include_package_data=True,
-    install_requires=["kafka-python", "numpy"],
+    install_requires=["kafka-python", "numpy", "requests", "dataclass-wizard"],
 )

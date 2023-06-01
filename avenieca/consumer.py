@@ -1,6 +1,8 @@
 import json
 from kafka import KafkaConsumer
 
+from avenieca import Broker
+
 
 class Consumer:
     """
@@ -9,14 +11,14 @@ class Consumer:
     :param config: configuration dictionary
     """
     def __init__(self,
-                 config: dict,
+                 config: Broker,
                  ):
         self.config = config
-        self.topic = config["topic"]
+        self.topic = config.pub_topic
         self.client = KafkaConsumer(
             self.topic,
-            bootstrap_servers=config["bootstrap_servers"],
-            auto_offset_reset=config["auto_offset_reset"]
+            bootstrap_servers=config.url,
+            auto_offset_reset=config.auto_offset_reset
         )
 
     def consume(self, func, sync_once=False):

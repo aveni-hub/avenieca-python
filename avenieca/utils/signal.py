@@ -2,12 +2,6 @@ import json
 
 import numpy as np
 
-Signal = {
-    "valence": None,
-    "score": None,
-    "state": None,
-}
-
 DEFAULT_STATE_DIM = 1
 
 
@@ -29,28 +23,28 @@ def get_state_as_list(signal, dtype=np.float64):
 
 def verify_signal(signal):
     assert type(signal) == dict
-    assert len(signal) == 3
+    assert len(signal) == 4
 
     if signal["state"] is None:
         raise Exception("signal state cannot be None")
 
     if type(signal["state"]) == str:
         verify_str_shape(signal["state"])
+        signal["state"] = json.loads(signal["state"])
 
     if type(signal["state"]) == list:
         arr_list = signal["state"]
         verify_list_shape(arr_list)
         if all(isinstance(item, (int, float)) for item in arr_list):
-            signal["state"] = json.dumps(arr_list)
             return
         else:
             raise Exception("signal state values must be int or float")
 
     if type(signal["state"]) == np.ndarray:
         try:
+            verify_np_shape(signal["state"])
             arr_list = signal["state"].tolist()
-            verify_list_shape(arr_list)
-            signal["state"] = json.dumps(arr_list)
+            signal["state"] = arr_list
             return
         except Exception as e:
             raise Exception("error converting state signal from numpy array to byte string: {}".format(e))
