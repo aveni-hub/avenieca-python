@@ -8,9 +8,8 @@
 
 name: Upload Python Package
 
-on:
-  release:
-    types: [published]
+on: push
+
 
 permissions:
   contents: read
@@ -22,6 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
