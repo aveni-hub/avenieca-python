@@ -13,7 +13,7 @@ README = (HERE / "README.md").read_text()
 # This call to set up() does all the work
 setup(
     name="avenieca-python",
-    version="0.1.3",
+    version="0.1.4",
     description="Python SDK for AveniECA",
     url="https://github.com/aveni-hub/avenieca-python",
     long_description=README,
