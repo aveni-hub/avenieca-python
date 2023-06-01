@@ -1,4 +1,7 @@
 import time
+
+from avenieca.config.broker import Broker
+
 from avenieca.producer import Producer
 from avenieca.utils.signal import verify_signal
 
@@ -10,25 +13,29 @@ class Stream(Producer):
     data for publishing.
 
     :param config: config dictionary
-    :param sync_rate: int (seconds) or float (sub-seconds)
+    :param sync_rate: float (time unit in seconds or sub-seconds)
     """
 
-    def __init__(self, config: dict, sync_rate: [int, float]):
+    def __init__(self, config: Broker, sync_rate: float):
         super().__init__(config)
         self.config = config
         self.sync_rate = sync_rate
         self.sync = True
 
-    def publish(self, func, sync_once=False):
+    def publish(self, func, handler_params=None, sync_once=False):
         """
         Basic publish stream timed by the sync_rate
 
-        :param func: handler to return the signal (dict data) for publishing
+        :param func: handler to return the Signal dataclass for publishing
+        :param handler_params: optional tuple of params to pass to the provided handler.
         :param sync_once: run the sync loop once
         :return: none
         """
         while self.sync:
-            signal = func()
+            if handler_params is None:
+                signal = func()
+            else:
+                signal = func(handler_params)
             verify_signal(signal)
             self.send(signal)
             if sync_once:

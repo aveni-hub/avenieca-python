@@ -1,3 +1,6 @@
+from avenieca.data import Signal
+
+from avenieca.config.broker import Broker
 from avenieca.producer import Producer
 from avenieca.utils.signal import verify_signal
 
@@ -10,21 +13,21 @@ class Event(Producer):
 
     :param config: configuration dictionary
     """
-    def __init__(self, config: dict):
+    def __init__(self, config: Broker):
         super().__init__(config)
         self.config = config
         self.sync = True
 
-    def publish(self, signal: dict):
+    def publish(self, signal: Signal):
         """
-        call this method with the signal dictionary to publish once to a digital twin
+        call this method with the Signal dataclass to publish once to a digital twin
 
         :param signal: signal data
         :return: None
         """
         if self.sync:
-            verify_signal(signal)
-            return self.send(signal)
+            verify_signal(signal.__dict__)
+            return self.send(signal.__dict__)
 
     @property
     def config(self):
